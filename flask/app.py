@@ -1,8 +1,21 @@
 from flask import Flask
+from pymongo import MongoClient
+import pymongo
 app = Flask(__name__)
 
 @app.route('/')
 def hello_geek():
+    def query_mongo_latest(db_name, collection_name, number = 1, mongo_uri = 'mongodb://192.168.4.37:27017/?directConnection=true'):
+        client = MongoClient(mongo_uri)
+        db = client[db_name]
+        collection = db[collection_name]
+        if number == 1:
+            res = collection.find_one(sort=[( '_id', pymongo.DESCENDING )])
+        else:
+            res = collection.aggregate([{'$sort': {'_id': -1}},{'$limit': number}])
+            res = list(res)
+        return res
+    return '<h1>' + str(query_mongo_latest('pddDB','acmvReadings')) + '</h2>'
     return '<h1>Hello from Flask & Docker</h2>'
 
 
