@@ -15,7 +15,7 @@ def hello_geek():
             res = collection.aggregate([{'$sort': {'_id': -1}},{'$limit': number}])
             res = list(res)
         return res
-    return '<h1>' + str(query_mongo_latest('pddDB','acmvReadings')) + '</h2>'
+    # return '<h1>' + str(query_mongo_latest('pddDB','acmvReadings')) + '</h2>'
     return '<h1>Hello from Flask & Docker</h2>'
 
 
