@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from pymongo import MongoClient
 import pymongo
 app = Flask(__name__)
@@ -18,6 +18,10 @@ def hello_geek():
     # return '<h1>' + str(query_mongo_latest('pddDB','acmvReadings')) + '</h2>'
     return '<h1>Hello from Flask & Docker</h2>'
 
+@app.route("/api",  methods = ['POST'])
+def api_insert():
+    print(request.args)
+    return "Success: Book information has been added."
 
 if __name__ == "__main__": #port 5000, host='0.0.0.0'
-    app.run(debug=True)
+    app.run(debug=True, port=5229)

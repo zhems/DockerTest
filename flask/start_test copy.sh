@@ -1,0 +1,1 @@
+docker run -p 5225:5225 --name docker-test python-docker

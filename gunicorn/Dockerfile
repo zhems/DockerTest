@@ -13,5 +13,7 @@ COPY . .
 
 # CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
 # CMD ["flask", "run", "--host=0.0.0.0", "--port=5225"]
-CMD ["gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:5225"]
+# CMD ["gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:5225"]
+# CMD ["gunicorn", "-w", "4", "app:app", "-b", "127.0.0.4:5245"]
+CMD ["gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:5245"]
 # gunicorn -w 4 'app:app'
